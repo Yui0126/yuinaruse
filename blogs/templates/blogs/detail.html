@@ -1,0 +1,36 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<fieldset class="bg-white rounded shadow p-6 mb-6 dark:bg-gray-800 dark:text-gray-100">
+  <legend><h2 class="text-2xl font-bold">{{ post.title }}</h2></legend>
+  <p class="mt-4">{{ post.content }}</p>
+  <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Published on {{ post.created_at }}</p>
+
+  <strong class="mt-4 block mb-2">Comments:</strong>
+  {% for comment in comments %}
+    <div class="border-b border-gray-200 py-2 dark:border-gray-600">
+      <p class="font-medium">{{ comment.author }} said:</p>
+      <p>{{ comment.text }}</p>
+      <p class="text-gray-400 dark:text-gray-400 text-xs">on {{ comment.created_at }}</p>
+    </div>
+  {% empty %}
+    <p>No comments yet.</p>
+  {% endfor %}
+</fieldset>
+
+<h3 class="text-xl font-semibold mb-2">Leave a comment:</h3>
+<form action="{% url 'blogs:comment' post.id %}" method="post" class="bg-white p-6 rounded shadow dark:bg-gray-800 dark:text-gray-100">
+  {% csrf_token %}
+  <label for="author" class="block font-medium mb-1">Your name</label>
+  <input type="text" id="author" name="author" class="w-full border rounded p-2 mb-4 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600" required>
+
+  <label for="text" class="block font-medium mb-1">Your comment</label>
+  <textarea id="text" name="text" rows="4" class="w-full border rounded p-2 mb-4 dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600" required></textarea>
+
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition dark:bg-blue-500 dark:hover:bg-blue-600">
+    Submit Comment
+  </button>
+</form>
+{% endblock %}
