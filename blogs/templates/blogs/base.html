@@ -6,6 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Yui's Blog{% endblock %}</title>
   <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+  <style>
+  .prose h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  }
+  </style>
 
   <!-- Tailwind CSS via CDN -->
   <script>
@@ -23,7 +31,7 @@
       <div class="flex justify-between items-center h-16">
         <!-- Logo / Blog Title -->
         <div class="flex-shrink-0">
-          <a href="{% url 'blogs:index' %}" class="text-2xl font-bold text-gray-800 dark:text-gray-100 hover:underline">
+          <a href="{% url 'blogs:index' %}" class="text-2xl font-bold text-gray-800 dark:text-gray-100">
             My Blog
           </a>
         </div>

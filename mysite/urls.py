@@ -22,4 +22,5 @@ urlpatterns = [
     path("blogs/", include("blogs.urls")),
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/blogs/', permanent=False)),
+    path('markdownx/', include('markdownx.urls')),
 ]
